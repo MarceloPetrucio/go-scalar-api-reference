@@ -1,0 +1,38 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Simple get hello word",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Hello"
+                ],
+                "summary": "Get Hello",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.ResponseSuccess"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.ResponseSuccess": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

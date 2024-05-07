@@ -1,0 +1,23 @@
+definitions:
+  main.ResponseSuccess:
+    properties:
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      description: Simple get hello word
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.ResponseSuccess'
+      summary: Get Hello
+      tags:
+      - Hello
+swagger: "2.0"
