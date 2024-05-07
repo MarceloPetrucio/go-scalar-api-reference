@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+
+	"github.com/MarceloPetrucio/go-scalar-api-reference"
 )
 
 // @title           Simple API
@@ -26,21 +29,22 @@ func main() {
 
 	router.Get("/", create)
 
-	// router.Get("/reference", func(w http.ResponseWriter, r *http.Request) {
-	// 	htmlContent, err := scalar.ApiReferenceHTML(&scalar_api_reference.Options{
-	// 		SpecURL: "../../docs/swagger.json",
-	// 		CustomOptions: scalar_api_reference.CustomOptions{
-	// 			PageTitle: "CGC API",
-	// 		},
-	// 		DarkMode: true,
-	// 	})
+	router.Get("/reference", func(w http.ResponseWriter, r *http.Request) {
+		htmlContent, err := scalar.ApiReferenceHTML(&scalar.Options{
+			SpecURL: "./docs/swagger.json",
+			CustomOptions: scalar.CustomOptions{
+				PageTitle: "Simple API",
+			},
+			DarkMode: true,
+		})
 
-	// 	if err != nil {
-	// 		fmt.Printf("%v", err)
-	// 	}
+		if err != nil {
+			fmt.Printf("%v", err)
+		}
 
-	// 	fmt.Fprintln(w, htmlContent)
-	// })
+		fmt.Fprintln(w, htmlContent)
+	})
 
+	fmt.Printf("Starting web server on port :8000")
 	http.ListenAndServe(":8000", router)
 }
