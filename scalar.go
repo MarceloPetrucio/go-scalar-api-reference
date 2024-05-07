@@ -1,4 +1,4 @@
-package go_scalar
+package scalar
 
 import (
 	"encoding/json"

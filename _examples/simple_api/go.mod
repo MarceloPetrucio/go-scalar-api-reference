@@ -3,7 +3,6 @@ module simple_api
 go 1.22.0
 
 require (
-	github.com/MarceloPetrucio/go-scalar-api-reference v0.0.0-20240507030316-afe48eb08f0e
 	github.com/go-chi/chi/v5 v5.0.12
 	github.com/swaggo/swag v1.16.3
 )
