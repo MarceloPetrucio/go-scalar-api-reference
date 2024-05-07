@@ -1,4 +1,4 @@
-package scalar
+package go_scalar
 
 import (
 	"fmt"

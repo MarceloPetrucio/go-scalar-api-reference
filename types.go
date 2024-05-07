@@ -1,4 +1,4 @@
-package scalar
+package go_scalar
 
 const DefaultCDN = "https://cdn.jsdelivr.net/npm/@scalar/api-reference"
 const CustomThemeCSS = `

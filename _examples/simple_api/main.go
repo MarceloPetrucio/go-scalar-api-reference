@@ -6,8 +6,6 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-
-	"github.com/MarceloPetrucio/go-scalar-api-reference"
 )
 
 // @title           Simple API
@@ -30,9 +28,9 @@ func main() {
 	router.Get("/", create)
 
 	router.Get("/reference", func(w http.ResponseWriter, r *http.Request) {
-		htmlContent, err := scalar.ApiReferenceHTML(&scalar.Options{
+		htmlContent, err := go_scalar.ApiReferenceHTML(&go_scalar.Options{
 			SpecURL: "./docs/swagger.json",
-			CustomOptions: scalar.CustomOptions{
+			CustomOptions: go_scalar.CustomOptions{
 				PageTitle: "Simple API",
 			},
 			DarkMode: true,
