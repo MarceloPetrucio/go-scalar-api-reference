@@ -7,9 +7,9 @@ import (
 )
 
 func safeJSONConfiguration(options *Options) string {
-	// Serializa as opções para JSON
+	// Serializes the options to JSON
 	jsonData, _ := json.Marshal(options)
-	// Escapa as aspas duplas para entidades HTML
+	// Escapes double quotes into HTML entities
 	escapedJSON := strings.ReplaceAll(string(jsonData), `"`, `&quot;`)
 	return escapedJSON
 }
@@ -17,19 +17,19 @@ func safeJSONConfiguration(options *Options) string {
 func specContentHandler(specContent interface{}) string {
 	switch spec := specContent.(type) {
 	case func() map[string]interface{}:
-		// Se specContent é uma função, chama a função e serializa o retorno
+		// If specContent is a function, it calls the function and serializes the return
 		result := spec()
 		jsonData, _ := json.Marshal(result)
 		return string(jsonData)
 	case map[string]interface{}:
-		// Se specContent é um mapa, serializa diretamente
+		// If specContent is a map, it serializes it directly
 		jsonData, _ := json.Marshal(spec)
 		return string(jsonData)
 	case string:
-		// Se é uma string, retorna diretamente
+		// If it is a string, it returns directly
 		return spec
 	default:
-		// Caso contrário, retorna vazio
+		// Otherwise, returns empty
 		return ""
 	}
 }
