@@ -2,6 +2,8 @@ package scalar
 
 import (
 	"fmt"
+	"io"
+	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -39,6 +41,22 @@ func ensureFileURL(filePath string) (string, error) {
 	}
 	resolvedPath := filepath.Join(currentDir, filePath)
 	return "file://" + resolvedPath, nil
+}
+
+// fetchContentFromURL reads the content from a URL and returns it as a string
+func fetchContentFromURL(fileURL string) (string, error) {
+	resp, err := http.Get(fileURL)
+	if err != nil {
+		return "", fmt.Errorf("error getting file content: %w", err)
+	}
+	defer resp.Body.Close()
+
+	content, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", fmt.Errorf("error reading file content: %w", err)
+	}
+
+	return string(content), nil
 }
 
 func readFileFromURL(fileURL string) ([]byte, error) {

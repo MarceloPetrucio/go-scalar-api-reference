@@ -42,17 +42,26 @@ func ApiReferenceHTML(optionsInput *Options) (string, error) {
 	}
 
 	if options.SpecContent == nil && options.SpecURL != "" {
-		urlPath, err := ensureFileURL(options.SpecURL)
-		if err != nil {
-			return "", err
-		}
 
-		content, err := readFileFromURL(urlPath)
-		if err != nil {
-			return "", err
-		}
+		if strings.HasPrefix(options.SpecURL, "http") {
+			content, err := fetchContentFromURL(options.SpecURL)
+			if err != nil {
+				return "", err
+			}
+			options.SpecContent = content
+		} else {
+			urlPath, err := ensureFileURL(options.SpecURL)
+			if err != nil {
+				return "", err
+			}
 
-		options.SpecContent = string(content)
+			content, err := readFileFromURL(urlPath)
+			if err != nil {
+				return "", err
+			}
+
+			options.SpecContent = string(content)
+		}
 	}
 
 	dataConfig := safeJSONConfiguration(options)
