@@ -101,7 +101,7 @@ type Options struct {
 	CDN                string              `json:"cdn,omitempty"`
 	Theme              ThemeId             `json:"theme,omitempty"`
 	Layout             ReferenceLayoutType `json:"layout,omitempty"`
-	SpecURL            string              `json:"specUrl,omitempty"`
+	SpecURL            string              `json:"specUrl,omitempty"` // allow external URL ou local path file
 	SpecContent        interface{}         `json:"specContent,omitempty"`
 	Proxy              string              `json:"proxy,omitempty"`
 	IsEditable         bool                `json:"isEditable,omitempty"`
