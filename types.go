@@ -1,7 +1,8 @@
 package scalar
 
-const DefaultCDN = "https://cdn.jsdelivr.net/npm/@scalar/api-reference"
-const CustomThemeCSS = `
+const (
+	DefaultCDN     = "https://cdn.jsdelivr.net/npm/@scalar/api-reference"
+	CustomThemeCSS = `
 	/* basic theme */
 	.light-mode {
 		--scalar-color-1: #2a2f45;
@@ -70,6 +71,7 @@ const CustomThemeCSS = `
 	}
 	/* Document Header */
 `
+)
 
 // Define ThemeId as a type based on string for theme identification
 type ThemeId string
@@ -104,11 +106,11 @@ type Options struct {
 	SpecURL            string              `json:"specUrl,omitempty"` // allow external URL ou local path file
 	SpecContent        interface{}         `json:"specContent,omitempty"`
 	Proxy              string              `json:"proxy,omitempty"`
-	IsEditable         bool                `json:"isEditable,omitempty"`
-	ShowSidebar        bool                `json:"showSidebar,omitempty"`
-	HideModels         bool                `json:"hideModels,omitempty"`
-	HideDownloadButton bool                `json:"hideDownloadButton,omitempty"`
-	DarkMode           bool                `json:"darkMode,omitempty"`
+	IsEditable         *bool               `json:"isEditable,omitempty"`
+	ShowSidebar        *bool               `json:"showSidebar,omitempty"`
+	HideModels         *bool               `json:"hideModels,omitempty"`
+	HideDownloadButton *bool               `json:"hideDownloadButton,omitempty"`
+	DarkMode           *bool               `json:"darkMode,omitempty"`
 	SearchHotKey       string              `json:"searchHotKey,omitempty"`
 	MetaData           string              `json:"metaData,omitempty"`
 	HiddenClients      []string            `json:"hiddenClients,omitempty"`
@@ -116,7 +118,7 @@ type Options struct {
 	Authentication     string              `json:"authentication,omitempty"`
 	PathRouting        string              `json:"pathRouting,omitempty"`
 	BaseServerURL      string              `json:"baseServerUrl,omitempty"`
-	WithDefaultFonts   bool                `json:"withDefaultFonts,omitempty"`
+	WithDefaultFonts   *bool               `json:"withDefaultFonts,omitempty"`
 	CustomOptions
 }
 

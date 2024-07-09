@@ -12,7 +12,7 @@ import (
 
 // @title           Simple API
 // @version         1.0
-// @description     Exemple use of scalar beautfull api
+// @description     Example use of scalar beautiful api
 // @termsOfService  http://swagger.io/terms/
 
 // @contact.name   Marcelo Petrucio
@@ -30,14 +30,17 @@ func main() {
 	router.Get("/", create)
 
 	router.Get("/reference", func(w http.ResponseWriter, r *http.Request) {
+		t := true
+		f := false
+
 		htmlContent, err := scalar.ApiReferenceHTML(&scalar.Options{
 			SpecURL: "./docs/swagger.json",
 			CustomOptions: scalar.CustomOptions{
 				PageTitle: "Simple API",
 			},
-			DarkMode: true,
+			DarkMode:   &t,
+			IsEditable: &f,
 		})
-
 		if err != nil {
 			fmt.Printf("%v", err)
 		}

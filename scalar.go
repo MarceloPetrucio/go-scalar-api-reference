@@ -42,7 +42,6 @@ func ApiReferenceHTML(optionsInput *Options) (string, error) {
 	}
 
 	if options.SpecContent == nil && options.SpecURL != "" {
-
 		if strings.HasPrefix(options.SpecURL, "http") {
 			content, err := fetchContentFromURL(options.SpecURL)
 			if err != nil {
