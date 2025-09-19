@@ -22,7 +22,7 @@ func ensureFileURL(filePath string) (string, error) {
 				return "", fmt.Errorf("error getting current directory: %w", err)
 			}
 			resolvedPath := filepath.Join(currentDir, path)
-			return "file://" + resolvedPath, nil
+			return "file://" + filepath.ToSlash(resolvedPath), nil
 		}
 		// If it is already absolute, returns as is
 		return filePath, nil
@@ -31,7 +31,7 @@ func ensureFileURL(filePath string) (string, error) {
 	// If the path does not start with file://, checks if it is absolute
 	if filepath.IsAbs(filePath) {
 		// If it is absolute, just adds the file:// prefix
-		return "file://" + filePath, nil
+		return "file://" + filepath.ToSlash(filePath), nil
 	}
 
 	// If it is a relative path, resolves relative to the current working directory
@@ -40,7 +40,7 @@ func ensureFileURL(filePath string) (string, error) {
 		return "", fmt.Errorf("error getting current directory: %w", err)
 	}
 	resolvedPath := filepath.Join(currentDir, filePath)
-	return "file://" + resolvedPath, nil
+	return "file://" + filepath.ToSlash(resolvedPath), nil
 }
 
 // fetchContentFromURL reads the content from a URL and returns it as a string
